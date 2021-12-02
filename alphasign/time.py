@@ -29,9 +29,8 @@ class Time(object):
     if minute is None:
       minute = now.minute
 
-    packet = Packet("%s%s%02d%02d" % (constants.WRITE_SPECIAL, "\x20",
+    return Packet("%s%s%02d%02d" % (constants.WRITE_SPECIAL, "\x20",
                                       hour, minute))
-    return packet
 
   def set_format(self, format=1):
     """Sets the time format on the sign.
@@ -43,6 +42,5 @@ class Time(object):
     """
     if format < 0 or format > 1:
       format = 1
-    byte = (format == 0) and "S" or "M"
-    packet = Packet("%s%s%s" % (constants.WRITE_SPECIAL, "\x27", byte))
-    return packet
+    byte = "S" if format == 0 else "M"
+    return Packet("%s%s%s" % (constants.WRITE_SPECIAL, "\x27", byte))

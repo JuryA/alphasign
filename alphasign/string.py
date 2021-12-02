@@ -23,10 +23,8 @@ class String(object):
       size = 32
     if len(data) > size:
       size = len(data)
-    if size > 125:
-      size = 125
-    if size < 1:
-      size = 1
+    size = min(size, 125)
+    size = max(size, 1)
     self.label = label
     self.size = size
     self.data = data

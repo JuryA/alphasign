@@ -30,10 +30,8 @@ class Text(object):
       size = 64
     if len(data) > size:
       size = len(data)
-    if size > 125:
-      size = 125
-    if size < 1:
-      size = 1
+    size = min(size, 125)
+    size = max(size, 1)
     if position is None:
       position = positions.MIDDLE_LINE
     if mode is None:
