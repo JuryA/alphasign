@@ -49,9 +49,8 @@ class Date(object):
     if day is None:
       day = today.day
 
-    packet = Packet("%s%s%02d%02d%02d" % (constants.WRITE_SPECIAL, ";",
+    return Packet("%s%s%02d%02d%02d" % (constants.WRITE_SPECIAL, ";",
                                           month, day, int(year)))
-    return packet
 
   def set_day(self, day=None):
     """Set the day of the week on the sign.
@@ -64,5 +63,4 @@ class Date(object):
     """
     if day is None or day < 1 or day > 7:
       day = datetime.datetime.today().weekday() + 1
-    packet = Packet("%s%s%s" % (constants.WRITE_SPECIAL, "&", day))
-    return packet
+    return Packet("%s%s%s" % (constants.WRITE_SPECIAL, "&", day))
